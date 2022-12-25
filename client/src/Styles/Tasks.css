@@ -1,0 +1,31 @@
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.my-tasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.tasks .first-line{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid gray;
+}
+
+.first-line div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.each-task {
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}

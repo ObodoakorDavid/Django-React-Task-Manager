@@ -1,0 +1,16 @@
+/** @format */
+
+.create-task form {
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-task form input,
+.create-task form textarea,
+.create-task select {
+  width: 100%;
+}
