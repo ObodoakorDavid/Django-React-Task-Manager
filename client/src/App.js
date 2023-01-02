@@ -4,10 +4,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Homepage from "./Components/Homepage";
-import { BrowserRouter, Routes, Route, json } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import Tasks from "./Components/Tasks";
 import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import CreateTask from "./Components/CreateTask";
 import EditTask from "./Components/EditTask";
 import Navbarr from "./Components/Navbarr";
@@ -54,12 +58,14 @@ function App() {
       },
       body: JSON.stringify(newTask),
     });
+    
   };
 
   return (
     <div className="App">
       <BrowserRouter>
         <Navbarr />
+        <hr style={{ margin: "0" }} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route

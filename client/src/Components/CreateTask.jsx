@@ -2,10 +2,11 @@
 
 import React from "react";
 import "../Styles/CreateTask.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const CreateTask = ({ createTask }) => {
+  const navigate = useNavigate();
   const [newTask, setNewTask] = useState({
     task: "",
     description: "",
@@ -21,6 +22,7 @@ const CreateTask = ({ createTask }) => {
         onSubmit={(e) => {
           createTask(e, newTask);
           console.log(newTask);
+          navigate("/tasks");
         }}
         action=""
       >

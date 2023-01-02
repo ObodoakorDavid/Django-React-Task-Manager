@@ -6,9 +6,6 @@ import {
   Container,
   Offcanvas,
   Nav,
-  NavDropdown,
-  Form,
-  Button,
 } from "react-bootstrap";
 
 import taskManagerLogo from "../images/TaskDuty Logo.png";
@@ -16,10 +13,15 @@ import profilePhoto from "../images/Profile photo.png";
 import { Link } from "react-router-dom";
 
 const Navbarr = () => {
+  const styling = {
+    textDecoration: "none",
+    color: "black",
+    fontWeight: "bold",
+  };
   return (
     <>
       {["lg"].map((expand) => (
-        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
+        <Navbar key={expand} expand={expand} className="p-3">
           <Container fluid>
             <Link to="/">
               <img src={taskManagerLogo} alt="" />
@@ -30,12 +32,14 @@ const Navbarr = () => {
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
             >
-              <Offcanvas.Header closeButton></Offcanvas.Header>
-              <img style={{ width: "50px" }} src={profilePhoto} alt="" />
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Link to="/create">New Task</Link>
-                  <Link to="/tasks">All Task</Link>
+              <Offcanvas.Body className="p-4 text-center flex-lg-row-reverse align-items-lg-center gap-3">
+                <div className="d-flex justify-content-between justify-content-lg-end flex-row-reverse">
+                  <Offcanvas.Header closeButton></Offcanvas.Header>
+                  <img style={{ width: "50px" }} src={profilePhoto} alt="" />
+                </div>
+                <Nav className="justify-content-end flex-grow-1 pe-3 gap-3">
+                  <Link style={styling} to="/create">New Task</Link>
+                  <Link style={styling} to="/tasks">All Task</Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

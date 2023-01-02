@@ -6,18 +6,27 @@ import hero_img from "../images/Hero_img.png";
 
 const Homepage = () => {
   return (
-    <div>
-      <div>
-        <h1>Manage your Tasks on TaskDuty</h1>
-        <p>
+    <div className="d-sm-flex text-sm-start p-5 align-items-center">
+      <div className="flex-sm-grow-3">
+        <h1>
+          Manage your Tasks on{" "}
+          <span style={{ color: "#974FD0" }}>TaskDuty</span>
+        </h1>
+        <p className="mt-3">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit.
           Necessitatibus sapiente cupiditate fuga! Perspiciatis natus molestiae
           facere quod harum, ullam ducimus similique libero maxime at
           repudiandae pariatur labore eveniet numquam perferendis!
         </p>
-        <Link>Go to My Tasks</Link>
+        <Link
+        to='/tasks'
+          className="btn btn-lg mt-3"
+          style={{ backgroundColor: "#974FD0", color: "white" }}
+        >
+          Go to My Tasks
+        </Link>
       </div>
-      <img src={hero_img} alt="" />
+      <img className="p-2 flex-sm-grow-1 w-100 mt-5" src={hero_img} alt="" />
     </div>
   );
 };
