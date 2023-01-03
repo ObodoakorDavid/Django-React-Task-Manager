@@ -8,7 +8,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  useNavigate,
 } from "react-router-dom";
 import Tasks from "./Components/Tasks";
 import { useState, useEffect } from "react";
@@ -18,16 +17,12 @@ import Navbarr from "./Components/Navbarr";
 
 function App() {
   const [data, setData] = useState({ tasks: [] });
-  useEffect(() => {
-    const getData = async (url) => {
-      let res = await fetch(url);
-      let jsonData = await res.json();
-      console.log(jsonData);
-      setData({ ...data, tasks: jsonData });
-    };
-
-    getData("http://127.0.0.1:8000/api/");
-  }, []);
+  const getData = async (url) => {
+    let res = await fetch(url);
+    let jsonData = await res.json();
+    console.log(jsonData);
+    setData({ ...data, tasks: jsonData });
+  };
 
   const deleteData = (id) => {
     fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
@@ -75,6 +70,7 @@ function App() {
                 tasks={data.tasks}
                 deleteData={deleteData}
                 refreshPage={refreshPage}
+                getData={getData}
               />
             }
           />

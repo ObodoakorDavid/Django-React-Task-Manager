@@ -4,14 +4,22 @@ import React from "react";
 import "../Styles/Tasks.css";
 import editIcon from "../images/edit-icon.png";
 import deleteIcon from "../images/bin-img.png";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-const Tasks = ({ tasks, deleteData, refreshPage }) => {
+const Tasks = ({ getData, tasks, deleteData, refreshPage }) => {
+  useEffect(() => {
+    getData("http://127.0.0.1:8000/api/");
+  }, []);
   return (
-    <div className="tasks">
-      <div className="my-tasks p-3">
+    <div className="tasks pt-4 pb-4">
+      <div className="my-tasks">
         <h1>My Tasks</h1>{" "}
-        <Link className="text-decoration-none fw-bold" style={{ color: "#974FD0" }} to="/create">
+        <Link
+          className="text-decoration-none fw-bold"
+          style={{ color: "#974FD0" }}
+          to="/create"
+        >
           + Add New Task
         </Link>
       </div>
@@ -37,11 +45,13 @@ const Tasks = ({ tasks, deleteData, refreshPage }) => {
                 </Link>
                 <div>
                   <button
-                    style={{ border: "2px solid #974FD0", color: '#974FD0' }}
+                    style={{ border: "1.5px solid #974FD0", color: "#974FD0" }}
                     className="btn d-flex align-items-center gap-2 fw-bold"
                     onClick={() => {
                       deleteData(task.id);
-                      refreshPage();
+                      setTimeout(() => {
+                        refreshPage();
+                      }, 1000);
                     }}
                   >
                     <img src={deleteIcon} alt="" />
@@ -51,8 +61,10 @@ const Tasks = ({ tasks, deleteData, refreshPage }) => {
               </div>
             </div>
             <hr style={{ margin: "8px" }} />
-            <p>{task.task}</p>
-            <p>{task.description}</p>
+            <div className="p-3">
+              <p className="fw-bold fs-5 text-sm-start">{task.task}</p>
+              <p className="text-sm-start">{task.description}</p>
+            </div>
           </div>
         );
       })}

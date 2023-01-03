@@ -2,22 +2,38 @@
 
 import React from "react";
 import "../Styles/CreateTask.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import angleBracket from "../images/Vector.png";
 
 const CreateTask = ({ createTask }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [newTask, setNewTask] = useState({
     task: "",
     description: "",
     tags: 1,
   });
 
+  useEffect(() => {
+    console.log(location);
+  }, []);
+
   const options = ["urgent", "important"];
 
   return (
-    <div className="create-task">
-      <h2>New Task</h2>
+    <div className="create-task pb-4 pt-4">
+      <div className="d-flex align-items-center gap-3">
+        <img
+          onClick={() => {
+            navigate(-1);
+          }}
+          style={{ width: "12px" }}
+          src={angleBracket}
+          alt=""
+        />
+        <h2 className="m-0 text-start fs-1">New Task</h2>
+      </div>
       <form
         onSubmit={(e) => {
           createTask(e, newTask);
@@ -25,6 +41,7 @@ const CreateTask = ({ createTask }) => {
           navigate("/tasks");
         }}
         action=""
+        className="form-group"
       >
         <div>
           <p>Task Title</p>
@@ -33,6 +50,8 @@ const CreateTask = ({ createTask }) => {
               setNewTask({ ...newTask, task: e.target.value });
             }}
             type="text"
+            className="form-control"
+            placeholder="E.g Project Defense, Assignment..."
           />
         </div>
         <div>
@@ -45,6 +64,8 @@ const CreateTask = ({ createTask }) => {
             id=""
             cols="30"
             rows="10"
+            className="form-control"
+            placeholder="Briefly describe your task..."
           ></textarea>
         </div>
         <div>
@@ -57,6 +78,7 @@ const CreateTask = ({ createTask }) => {
                 setNewTask({ ...newTask, tags: 2 });
               }
             }}
+            className="form-select"
           >
             {options.map((each) => {
               return (
@@ -67,8 +89,16 @@ const CreateTask = ({ createTask }) => {
             })}
           </select>
         </div>
-        <button>Done</button>
-        <Link>Back To Top</Link>
+        <button
+          style={{
+            backgroundColor: "#974FD0",
+            color: "white",
+          }}
+          className="btn"
+        >
+          Done
+        </button>
+        <Link style={{ color: "#974FD0" }}>Back To Top</Link>
       </form>
     </div>
   );
